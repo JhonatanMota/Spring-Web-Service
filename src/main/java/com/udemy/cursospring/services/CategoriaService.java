@@ -12,10 +12,12 @@ public class CategoriaService {
 
     //Autowired é usado para que o spring instancie "automaticamente" a injeção de dependência
     @Autowired
-    private CategoriaRepository repository;
+    private CategoriaRepository categoriaRepository;
 
     public Categoria buscar(Integer id){
-        Optional<Categoria> categoria = repository.findById(id);
+        Optional<Categoria> categoria = categoriaRepository.findById(id);
         return categoria.orElse(null);
     }
+
+
 }
