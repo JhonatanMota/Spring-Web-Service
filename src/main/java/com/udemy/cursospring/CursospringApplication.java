@@ -1,8 +1,12 @@
 package com.udemy.cursospring;
 
 import com.udemy.cursospring.models.Categoria;
+import com.udemy.cursospring.models.Cidade;
+import com.udemy.cursospring.models.Estado;
 import com.udemy.cursospring.models.Produto;
 import com.udemy.cursospring.repositories.CategoriaRepository;
+import com.udemy.cursospring.repositories.CidadeRepository;
+import com.udemy.cursospring.repositories.EstadoRepository;
 import com.udemy.cursospring.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -19,6 +23,10 @@ public class CursospringApplication implements CommandLineRunner {
     private CategoriaRepository categoriaRepository;
     @Autowired
     private ProdutoRepository produtoRepository;
+    @Autowired
+    private CidadeRepository cidadeRepository;
+    @Autowired
+    private EstadoRepository estadoRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(CursospringApplication.class, args);
@@ -42,5 +50,16 @@ public class CursospringApplication implements CommandLineRunner {
 
         categoriaRepository.saveAll(Arrays.asList(categoria1, categoria2));
         produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
+
+
+        Estado estado1 = new Estado("Minas Gerais");
+        Estado estado2 = new Estado("São Paulo");
+
+        Cidade c1 = new Cidade("Uberlândia", estado1);
+        Cidade c2 = new Cidade("São Paulo", estado2);
+        Cidade c3 = new Cidade("Campinas", estado2);
+
+        estadoRepository.saveAll(Arrays.asList(estado1, estado2));
+        cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
     }
 }
