@@ -1,7 +1,10 @@
 package com.udemy.cursospring.models;
 
-import java.time.LocalDate;
+import com.udemy.cursospring.models.enums.EstadoPagamento;
 
+import javax.persistence.Entity;
+
+@Entity
 public class PagamentoComCartao extends Pagamento {
 
     private Integer numeroParcela;
@@ -9,8 +12,8 @@ public class PagamentoComCartao extends Pagamento {
     public PagamentoComCartao() {
     }
 
-    public PagamentoComCartao(Integer estadoPagamento, Pedido pedido, Integer numeroParcela) {
-        super(estadoPagamento, pedido);
+    public PagamentoComCartao(EstadoPagamento estadoPagamento, Pedido pedido, Integer numeroParcela) {
+        super(estadoPagamento.getCod(), pedido);
         this.numeroParcela = numeroParcela;
     }
 

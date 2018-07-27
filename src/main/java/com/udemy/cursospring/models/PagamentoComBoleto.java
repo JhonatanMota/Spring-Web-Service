@@ -1,9 +1,11 @@
 package com.udemy.cursospring.models;
 
-import com.udemy.cursospring.models.Pagamento;
+import com.udemy.cursospring.models.enums.EstadoPagamento;
 
+import javax.persistence.Entity;
 import java.time.LocalDate;
 
+@Entity
 public class PagamentoComBoleto extends Pagamento {
 
     private LocalDate dataVencimento;
@@ -13,8 +15,8 @@ public class PagamentoComBoleto extends Pagamento {
     public PagamentoComBoleto() {
     }
 
-    public PagamentoComBoleto(Integer estadoPagamento, Pedido pedido, LocalDate dataVencimento, LocalDate dataPagamento) {
-        super(estadoPagamento, pedido);
+    public PagamentoComBoleto(EstadoPagamento estadoPagamento, Pedido pedido, LocalDate dataVencimento, LocalDate dataPagamento) {
+        super(estadoPagamento.getCod(), pedido);
         this.dataVencimento = dataVencimento;
         this.dataPagamento = dataPagamento;
     }

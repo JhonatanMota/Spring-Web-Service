@@ -26,7 +26,7 @@ public class Cliente extends AbstractEntity {
     @ElementCollection
     @CollectionTable(name = "Telefone")
     private Set<String> telefones = new HashSet<>();
-
+    @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 
     public Cliente() {

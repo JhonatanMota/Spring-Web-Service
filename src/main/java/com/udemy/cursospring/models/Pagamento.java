@@ -2,13 +2,11 @@ package com.udemy.cursospring.models;
 
 import com.udemy.cursospring.abstractes.AbstractEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
-public class Pagamento extends AbstractEntity {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Pagamento extends AbstractEntity {
 
     private Integer estadoPagamento;
 

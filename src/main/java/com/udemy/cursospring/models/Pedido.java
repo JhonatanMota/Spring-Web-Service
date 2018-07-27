@@ -2,9 +2,7 @@ package com.udemy.cursospring.models;
 
 import com.udemy.cursospring.abstractes.AbstractEntity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -13,15 +11,18 @@ public class Pedido extends AbstractEntity {
     private LocalDate instante;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
     private Pagamento pagamento;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+    @ManyToOne
+    @JoinColumn(name = "endereco_entrega_id")
     private Endereco enderecoEntrega;
 
     public Pedido() {
     }
 
-    public Pedido(LocalDate instante, Pagamento pagamento, Cliente cliente, Endereco enderecoEntrega) {
+    public Pedido(LocalDate instante, Cliente cliente, Endereco enderecoEntrega) {
         this.instante = instante;
-        this.pagamento = pagamento;
         this.cliente = cliente;
         this.enderecoEntrega = enderecoEntrega;
     }

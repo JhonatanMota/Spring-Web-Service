@@ -1,6 +1,7 @@
 package com.udemy.cursospring;
 
 import com.udemy.cursospring.models.*;
+import com.udemy.cursospring.models.enums.EstadoPagamento;
 import com.udemy.cursospring.models.enums.TipoCliente;
 import com.udemy.cursospring.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.Arrays;
 
 @SpringBootApplication
@@ -26,6 +29,10 @@ public class CursospringApplication implements CommandLineRunner {
     private ClienteRepository clienteRepository;
     @Autowired
     private EnderecoRepository enderecoRepository;
+    @Autowired
+    private PagamentoRepository pagamentoRepository;
+    @Autowired
+    private PedidoRepository pedidoRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(CursospringApplication.class, args);
@@ -72,5 +79,20 @@ public class CursospringApplication implements CommandLineRunner {
 
         clienteRepository.save(cliente1);
         enderecoRepository.saveAll(Arrays.asList(end1, end2));
+
+        Pedido ped1 = new Pedido(LocalDate.of(2017, Month.SEPTEMBER, 30), cliente1, end1);
+        Pedido ped2 = new Pedido(LocalDate.of(2017, Month.OCTOBER, 10), cliente1, end2);
+
+        Pagamento pagto1 = new PagamentoComCartao(EstadoPagamento.QUITADO, ped1, 6);
+        ped1.setPagamento(pagto1);
+
+        Pagamento pagto2 = new PagamentoComBoleto(EstadoPagamento.PENDENTE, ped2, LocalDate.of(2017, Month.OCTOBER, 19), null);
+        ped2.setPagamento(pagto2);
+
+        cliente1.getPedidos().addAll(Arrays.asList(ped1, ped2));
+
+        pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
+        pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2));
+
     }
 }
