@@ -1,5 +1,6 @@
 package com.udemy.cursospring.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.udemy.cursospring.abstractes.AbstractEntity;
 
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ public class Categoria extends AbstractEntity {
     private String nome;
 
     @ManyToMany(mappedBy = "categorias")
+    @JsonManagedReference
     private List<Produto> produtos = new ArrayList<>();
 
     public Categoria() {

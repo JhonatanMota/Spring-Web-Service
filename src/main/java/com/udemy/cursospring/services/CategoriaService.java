@@ -2,6 +2,7 @@ package com.udemy.cursospring.services;
 
 import com.udemy.cursospring.models.Categoria;
 import com.udemy.cursospring.repositories.CategoriaRepository;
+import com.udemy.cursospring.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +15,10 @@ public class CategoriaService {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
-    public Categoria buscar(Integer id){
-        Optional<Categoria> categoria = categoriaRepository.findById(id);
-        return categoria.orElse(null);
+    public Categoria find(Integer id){
+        Optional<Categoria> categoria = categoriaRepository.findById(id.longValue());
+        return categoria.orElseThrow(()-> new ObjectNotFoundException(
+                "Objeto não encontrado. Id: "+id + ", Tipo: "+Categoria.class.getName()));
     }
 
 

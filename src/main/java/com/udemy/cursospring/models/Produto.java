@@ -1,5 +1,6 @@
 package com.udemy.cursospring.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.udemy.cursospring.abstractes.AbstractEntity;
 
 import javax.persistence.Entity;
@@ -21,6 +22,7 @@ public class Produto extends AbstractEntity {
             joinColumns = @JoinColumn(name = "produto_id"),
             inverseJoinColumns = @JoinColumn(name = "categoria_id")
     )
+    @JsonBackReference
     private List<Categoria> categorias = new ArrayList<>();
 
     public Produto() {
