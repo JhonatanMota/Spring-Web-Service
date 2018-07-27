@@ -1,5 +1,6 @@
 package com.udemy.cursospring.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.udemy.cursospring.abstractes.AbstractEntity;
 
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ public class Endereco extends AbstractEntity {
     private String cep;
     @ManyToOne
     @JoinColumn(name = "cliente_id")
+    @JsonBackReference
     private Cliente cliente;
     @ManyToOne
     @JoinColumn(name = "cidade_id")

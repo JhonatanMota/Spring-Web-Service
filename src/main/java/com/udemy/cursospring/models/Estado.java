@@ -1,5 +1,6 @@
 package com.udemy.cursospring.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.udemy.cursospring.abstractes.AbstractEntity;
 import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 
@@ -15,6 +16,7 @@ public class Estado extends AbstractEntity {
     private String nome;
 
     @OneToMany(mappedBy = "estado")
+    @JsonBackReference
     private List<Cidade> cidades = new ArrayList<>();
 
     public Estado() {

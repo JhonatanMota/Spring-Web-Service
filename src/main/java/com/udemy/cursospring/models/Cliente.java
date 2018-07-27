@@ -1,5 +1,6 @@
 package com.udemy.cursospring.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.udemy.cursospring.abstractes.AbstractEntity;
 import com.udemy.cursospring.models.enums.TipoCliente;
 
@@ -20,6 +21,7 @@ public class Cliente extends AbstractEntity {
     private String docIdentificacao;
     private Integer tipo;
     @OneToMany(mappedBy = "cliente")
+    @JsonManagedReference
     private List<Endereco> enderecos = new ArrayList<>();
     @ElementCollection
     @CollectionTable(name = "Telefone")
