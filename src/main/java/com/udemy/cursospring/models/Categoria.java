@@ -1,4 +1,4 @@
-package com.udemy.cursospring.model;
+package com.udemy.cursospring.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
