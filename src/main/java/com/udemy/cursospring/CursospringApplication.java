@@ -33,6 +33,8 @@ public class CursospringApplication implements CommandLineRunner {
     private PagamentoRepository pagamentoRepository;
     @Autowired
     private PedidoRepository pedidoRepository;
+    @Autowired
+    private ItemPedidoRepository itemPedidoRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(CursospringApplication.class, args);
@@ -93,6 +95,19 @@ public class CursospringApplication implements CommandLineRunner {
 
         pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
         pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2));
+
+        ItemPedido ip1 = new ItemPedido(BigDecimal.ZERO, 1, BigDecimal.valueOf(2000), ped1, p1);
+        ItemPedido ip2 = new ItemPedido(BigDecimal.ZERO, 2, BigDecimal.valueOf(80), ped1, p3);
+        ItemPedido ip3 = new ItemPedido(BigDecimal.valueOf(800), 1, BigDecimal.valueOf(800), ped2, p2);
+
+        ped1.getItens().addAll(Arrays.asList(ip1, ip2));
+        ped2.getItens().add(ip3);
+
+        p1.getItens().add(ip1);
+        p1.getItens().add(ip3);
+        p1.getItens().add(ip2);
+
+        itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
 
     }
 }
