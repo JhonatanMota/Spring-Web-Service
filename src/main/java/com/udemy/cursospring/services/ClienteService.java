@@ -20,6 +20,4 @@ public class ClienteService {
         return cliente.orElseThrow(()-> new ObjectNotFoundException(
                 "Objeto não encontrado. Id: "+id + ", Tipo: "+Cliente.class.getName()));
     }
-
-
 }

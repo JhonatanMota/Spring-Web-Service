@@ -1,5 +1,7 @@
 package com.udemy.cursospring.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -10,9 +12,11 @@ import java.util.Objects;
 public class ItemPedidoPK implements Serializable {
     @ManyToOne
     @JoinColumn(name = "pedido_id")
+    @JsonBackReference
     private Pedido pedido;
     @ManyToOne
     @JoinColumn(name = "produto_id")
+    @JsonBackReference
     private Produto produto;
 
     public Pedido getPedido() {

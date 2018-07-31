@@ -1,5 +1,6 @@
 package com.udemy.cursospring.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.udemy.cursospring.abstractes.AbstractEntity;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ public abstract class Pagamento extends AbstractEntity {
     @OneToOne
     @JoinColumn(name = "pedido_id")
     @MapsId
+    @JsonBackReference
     private Pedido pedido;
 
     public Pagamento() {

@@ -35,7 +35,6 @@ public class Endereco extends AbstractEntity {
         this.cidade = cidade;
     }
 
-
     public String getLogradouro() {
         return logradouro;
     }

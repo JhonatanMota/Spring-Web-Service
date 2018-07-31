@@ -1,5 +1,6 @@
 package com.udemy.cursospring.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.udemy.cursospring.abstractes.AbstractEntity;
 import com.udemy.cursospring.models.enums.TipoCliente;
@@ -20,6 +21,7 @@ public class Cliente extends AbstractEntity {
     private String email;
     private String docIdentificacao;
     private Integer tipo;
+
     @OneToMany(mappedBy = "cliente")
     @JsonManagedReference
     private List<Endereco> enderecos = new ArrayList<>();
@@ -27,6 +29,7 @@ public class Cliente extends AbstractEntity {
     @CollectionTable(name = "Telefone")
     private Set<String> telefones = new HashSet<>();
     @OneToMany(mappedBy = "cliente")
+    @JsonBackReference
     private List<Pedido> pedidos = new ArrayList<>();
 
     public Cliente() {

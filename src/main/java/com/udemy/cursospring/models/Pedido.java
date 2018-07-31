@@ -1,5 +1,6 @@
 package com.udemy.cursospring.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.udemy.cursospring.abstractes.AbstractEntity;
 
 import javax.persistence.*;
@@ -12,14 +13,17 @@ public class Pedido extends AbstractEntity {
 
     private LocalDate instante;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
+    @JsonManagedReference
     private Pagamento pagamento;
     @ManyToOne
     @JoinColumn(name = "cliente_id")
+    @JsonManagedReference
     private Cliente cliente;
     @ManyToOne
     @JoinColumn(name = "endereco_entrega_id")
     private Endereco enderecoEntrega;
     @OneToMany(mappedBy = "id.pedido")
+    @JsonManagedReference
     private Set<ItemPedido> itens = new HashSet<>();
 
     public Pedido() {
